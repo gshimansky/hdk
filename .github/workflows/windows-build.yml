@@ -50,8 +50,8 @@ jobs:
       - name: Update Conda env
         if: steps.conda-cache.cache-hit != 'true'
         run: |
-          conda update conda
-          conda env update -f omniscidb/scripts/mapd-deps-conda-windows-env.yml
+          $env:CONDA\conda update conda
+          $env:CONDA\conda env update -f omniscidb/scripts/mapd-deps-conda-windows-env.yml
 
       - name: Restore Maven cache
         uses: actions/cache@v3
@@ -63,9 +63,9 @@ jobs:
 
       - name: Conda - ${{ inputs.name }}
         run: |
-          conda info
-          conda list -n omnisci-dev
-          conda run --no-capture-output -n omnisci-dev omniscidb\scripts\conda\build.bat ${{ inputs.options }}
+          $env:CONDA\conda info
+          $env:CONDA\conda list -n omnisci-dev
+          $env:CONDA\conda run --no-capture-output -n omnisci-dev omniscidb\scripts\conda\build.bat ${{ inputs.options }}
       #     tar -zcf /tmp/build.tgz .
 
       # - name: Upload build and src files
