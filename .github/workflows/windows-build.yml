@@ -29,7 +29,7 @@ jobs:
 
       - name: Free space
         run: |
-          rmdir /s/q C:\Android\android-sdk
+          Remove-Item -Path C:\Android\android-sdk -Recurse
 
       - name: Set env context
         run: |
